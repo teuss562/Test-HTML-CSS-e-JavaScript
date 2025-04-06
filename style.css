@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to top right, #ffc0cb, #fff0f5);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #e91e63;
+}
+
+.message {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.gallery img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+.heart {
+  position: fixed;
+  top: -50px;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 4s infinite ease-in;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: -100px;
+    opacity: 0;
+  }
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    max-width: 800px;
+    width: 90%;
+    margin: 20px auto;
+}
+
+h1, h2, p {
+    margin-bottom: 20px;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 15px;
+    margin: 15px 0;
+}
