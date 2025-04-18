@@ -1,39 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Para Minha Namorada</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Temporizador Crescente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .timer {
+      font-size: 2em;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .timer span {
+      display: inline-block;
+      min-width: 80px;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Para Minha Princesa</h1>
-      <p>Um pedacinho do quanto eu te amo</p>
-    </header>
 
-    <div class="message">
-      <p>Desde o dia que te conheci, tudo mudou. Você trouxe luz, amor, e um sorriso que aquece minha alma.</p>
-      <p>Te amo infinitamente!</p>
-    </div>
-
-    <div class="gallery">
-      <img src="foto1.jpg" alt="Nós dois">
-      <img src="foto2.jpg" alt="Momentos juntos">
-      <img src="foto3.jpg" alt="Sorrisos">
-    </div>
-
-    <audio autoplay loop>
-      <source src="musica.mp3" type="audio/mp3">
-    </audio>
-
-    <div class="timer">
-      <h2>Contagem Regressiva</h2>
-      <p id="countdown"></p>
-    </div>
-
-    <script src="script.js"></script>
+  <h1>Temporizador Crescente</h1>
+  <div class="timer" id="timer">
+    <span id="months">00</span> :
+    <span id="days">00</span> :
+    <span id="hours">00</span> :
+    <span id="minutes">00</span> :
+    <span id="seconds">00</span>
   </div>
+
+  <script>
+    let startDate = new Date();
+
+    function updateTimer() {
+      let now = new Date();
+      let diff = now - startDate;
+
+      let seconds = Math.floor(diff / 1000);
+      let minutes = Math.floor(seconds / 60);
+      let hours = Math.floor(minutes / 60);
+      let days = Math.floor(hours / 24);
+      let months = Math.floor(days / 30); // Aproximação
+
+      seconds = seconds % 60;
+      minutes = minutes % 60;
+      hours = hours % 24;
+      days = days % 30;
+
+      document.getElementById('months').textContent = String(months).padStart(2, '0');
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateTimer, 1000);
+  </script>
+
 </body>
 </html>
