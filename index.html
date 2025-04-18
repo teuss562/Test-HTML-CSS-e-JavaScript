@@ -35,39 +35,48 @@
 
   <h1>Temporizador Crescente</h1>
   <div class="timer" id="timer">
-    <span id="months">07</span> :
-    <span id="days">07</span> :
-    <span id="hours">01</span> :
-    <span id="minutes">45</span> :
-    <span id="seconds">30</span>
+    <span id="months">00</span> :
+    <span id="days">00</span> :
+    <span id="hours">00</span> :
+    <span id="minutes">00</span> :
+    <span id="seconds">00</span>
   </div>
 
   <script>
-    // Função que retorna a data atual no fuso de Brasília
+    // Função para obter a hora de Brasília (UTC-3)
     function getBrasiliaDate() {
-      // Pega a hora atual em UTC e aplica o deslocamento de Brasília (UTC-3)
-      let now = new Date();
-      let utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      return new Date(utc - (3 * 60 * 60 * 1000)); // Horário de Brasília
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      return new Date(utc - (3 * 60 * 60 * 1000)); // UTC-3
     }
 
-    // Define o tempo de início: 7 meses, 7 dias, 1h45m30s atrás do horário de Brasília atual
-    let startDate = getBrasiliaDate();
-    startDate.setSeconds(startDate.getSeconds() - 30);
-    startDate.setMinutes(startDate.getMinutes() - 45);
-    startDate.setHours(startDate.getHours() - 1);
-    startDate.setDate(startDate.getDate() - 7);
-    startDate.setMonth(startDate.getMonth() - 7);
+    // Verifica se já existe uma data de início salva
+    let storedStart = localStorage.getItem('startDate');
+    let startDate;
+
+    if (storedStart) {
+      // Usa a data salva anteriormente
+      startDate = new Date(storedStart);
+    } else {
+      // Cria a data de início com 7m 7d 1h 45min 30s atrás do horário de Brasília atual
+      startDate = getBrasiliaDate();
+      startDate.setSeconds(startDate.getSeconds() - 30);
+      startDate.setMinutes(startDate.getMinutes() - 45);
+      startDate.setHours(startDate.getHours() - 1);
+      startDate.setDate(startDate.getDate() - 7);
+      startDate.setMonth(startDate.getMonth() - 7);
+      localStorage.setItem('startDate', startDate.toISOString()); // Salva no localStorage
+    }
 
     function updateTimer() {
-      let now = getBrasiliaDate();
-      let diff = now - startDate;
+      const now = getBrasiliaDate();
+      const diff = now - startDate;
 
       let seconds = Math.floor(diff / 1000);
       let minutes = Math.floor(seconds / 60);
       let hours = Math.floor(minutes / 60);
       let days = Math.floor(hours / 24);
-      let months = Math.floor(days / 30); // Aproximação simples
+      let months = Math.floor(days / 30); // Aproximação
 
       seconds = seconds % 60;
       minutes = minutes % 60;
