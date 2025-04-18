@@ -38,12 +38,18 @@
     <span id="months">07</span> :
     <span id="days">07</span> :
     <span id="hours">01</span> :
-    <span id="minutes">48</span> :
-    <span id="seconds">59</span>
+    <span id="minutes">45</span> :
+    <span id="seconds">30</span>
   </div>
 
   <script>
+    // Define o tempo de início como 7 meses, 7 dias, 1 hora, 45 minutos e 30 segundos atrás
     let startDate = new Date();
+    startDate.setSeconds(startDate.getSeconds() - 30);
+    startDate.setMinutes(startDate.getMinutes() - 45);
+    startDate.setHours(startDate.getHours() - 1);
+    startDate.setDate(startDate.getDate() - 7);
+    startDate.setMonth(startDate.getMonth() - 7);
 
     function updateTimer() {
       let now = new Date();
@@ -67,8 +73,10 @@
       document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
 
-    setInterval(updateTimer, 1000);
+    updateTimer(); // Atualiza imediatamente ao carregar a página
+    setInterval(updateTimer, 1000); // Atualiza a cada segundo
   </script>
 
 </body>
 </html>
+
