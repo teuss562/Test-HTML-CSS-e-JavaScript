@@ -1,98 +1,236 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Temporizador Crescente</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      text-align: center;
-      padding: 50px;
-    }
+<!DOCTYPE html> <html lang="pt-br">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Temporizador Crescente</title>  
+  <style>  
+    body {  
+      font-family: Arial, sans-serif;  
+      background: #f0f0f0;  
+      text-align: center;  
+      padding: 50px;  
+    } h1 {  
+  font-size: 2em;  
+  margin-bottom: 20px;  
+}  
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
+.timer {  
+  font-size: 2em;  
+  background: #fff;  
+  padding: 20px;  
+  border-radius: 10px;  
+  display: inline-block;  
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);  
+}  
 
-    .timer {
-      font-size: 2em;
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+.timer span {  
+  display: inline-block;  
+  min-width: 80px;  
+}
 
-    .timer span {
-      display: inline-block;
-      min-width: 80px;
-    }
-  </style>
-</head>
-<body>
+  </style>  
+</head>  
+<body> <h1>Temporizador Crescente</h1>  
+  <div class="timer" id="timer">  
+    <span id="months">07</span> :  
+    <span id="days">07</span> :  
+    <span id="hours">01</span> :  
+    <span id="minutes">45</span> :  
+    <span id="seconds">30</span>  
+  </div> <script>  
+    // Define o tempo de início como 7 meses, 7 dias, 1 hora, 45 minutos e 30 segundos atrás  
+    let startDate = new Date();  
+    startDate.setSeconds(startDate.getSeconds() - 30);  
+    startDate.setMinutes(startDate.getMinutes() - 45);  
+    startDate.setHours(startDate.getHours() - 1);  
+    startDate.setDate(startDate.getDate() - 7);  
+    startDate.setMonth(startDate.getMonth() - 7);  
+  
+    function updateTimer() {  
+      let now = new Date();  
+      let diff = now - startDate;  
+  
+      let seconds = Math.floor(diff / 1000);  
+      let minutes = Math.floor(seconds / 60);  
+      let hours = Math.floor(minutes / 60);  
+      let days = Math.floor(hours / 24);  
+      let months = Math.floor(days / 30); // Aproximação  
+  
+      seconds = seconds % 60;  
+      minutes = minutes % 60;  
+      hours = hours % 24;  
+      days = days % 30;  
+  
+      document.getElementById('months').textContent = String(months).padStart(2, '0');  
+      document.getElementById('days').textContent = String(days).padStart(2, '0');  
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');  
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');  
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');  
+    }  
+  
+    updateTimer(); // Atualiza imediatamente ao carregar a página  
+    setInterval(updateTimer, 1000); // Atualiza a cada segundo  
+  </script> </body>  
+</html> Junte o comando de cima com os comandos abaixo sem modificar os de baixo:
 
-  <h1>Temporizador Crescente</h1>
-  <div class="timer" id="timer">
-    <span id="months">00</span> :
-    <span id="days">00</span> :
-    <span id="hours">00</span> :
-    <span id="minutes">00</span> :
-    <span id="seconds">00</span>
-  </div>
+HTML:
 
-  <script>
-    // Função para obter a hora de Brasília (UTC-3)
-    function getBrasiliaDate() {
-      const now = new Date();
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      return new Date(utc - (3 * 60 * 60 * 1000)); // UTC-3
-    }
+<!DOCTYPE html> <html lang="pt-br">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
+  <title>Para Minha Namorada</title>  
+  <link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+<div class="container"> <header>  
+    <h1>Para Minha Princesa</h1>  
+    <p>Um pedacinho do quanto eu te amo</p>  
+  </header> <div class="message">  
+    <p>Desde o dia que te conheci, tudo mudou. Você trouxe luz, amor, e um sorriso que aquece minha alma.</p>  
+    <p>Te amo infinitamente!</p>  
+  </div> <div class="gallery">  
+    <img src="foto1.jpg" alt="Nós dois">  
+    <img src="foto2.jpg" alt="Momentos juntos">  
+    <img src="foto3.jpg" alt="Sorrisos">  
+  </div> <audio autoplay loop>  
+    <source src="musica.mp3" type="audio/mp3">  
+  </audio> <script src="script.js"></script> </div>  
+</body>  
+</html> CSS:
+body {
+margin: 0;
+padding: 0;
+background: linear-gradient(to bottom, #87ceeb, #f0f8ff);
+font-family: 'Segoe UI', sans-serif;
+color: #333;
+overflow-x: hidden;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+min-height: 100vh;
+text-align: center;
+}
 
-    // Verifica se já existe uma data de início salva
-    let storedStart = localStorage.getItem('startDate');
-    let startDate;
+header {
+text-align: center;
+padding: 2rem;
+}
 
-    if (storedStart) {
-      // Usa a data salva anteriormente
-      startDate = new Date(storedStart);
-    } else {
-      // Cria a data de início com 7m 7d 1h 45min 30s atrás do horário de Brasília atual
-      startDate = getBrasiliaDate();
-      startDate.setSeconds(startDate.getSeconds() - 30);
-      startDate.setMinutes(startDate.getMinutes() - 45);
-      startDate.setHours(startDate.getHours() - 1);
-      startDate.setDate(startDate.getDate() - 7);
-      startDate.setMonth(startDate.getMonth() - 7);
-      localStorage.setItem('startDate', startDate.toISOString()); // Salva no localStorage
-    }
+header h1 {
+font-size: 2.5rem;
+color: #e91e63;
+}
 
-    function updateTimer() {
-      const now = getBrasiliaDate();
-      const diff = now - startDate;
+.message {
+max-width: 800px;
+margin: 2rem auto;
+padding: 1.5rem;
+background: white;
+border-radius: 20px;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+text-align: center;
+}
 
-      let seconds = Math.floor(diff / 1000);
-      let minutes = Math.floor(seconds / 60);
-      let hours = Math.floor(minutes / 60);
-      let days = Math.floor(hours / 24);
-      let months = Math.floor(days / 30); // Aproximação
+.gallery {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 1rem;
+padding: 2rem;
+}
 
-      seconds = seconds % 60;
-      minutes = minutes % 60;
-      hours = hours % 24;
-      days = days % 30;
+.gallery img {
+width: 200px;
+height: 200px;
+object-fit: cover;
+border-radius: 15px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+transition: transform 0.3s;
+}
 
-      document.getElementById('months').textContent = String(months).padStart(2, '0');
-      document.getElementById('days').textContent = String(days).padStart(2, '0');
-      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-    }
+.gallery img:hover {
+transform: scale(1.05);
+}
 
-    updateTimer(); // Atualiza imediatamente
-    setInterval(updateTimer, 1000); // Atualiza a cada segundo
-  </script>
+.heart {
+position: fixed;
+top: -50px;
+width: 20px;
+height: 20px;
+background: red;
+transform: rotate(45deg);
+animation: float 4s infinite ease-in;
+}
 
+.heart::before,
+.heart::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+background: red;
+border-radius: 50%;
+}
+
+.heart::before {
+top: -10px;
+left: 0;
+}
+
+.heart::after {
+left: -10px;
+top: 0;
+}
+
+@keyframes float {
+0% {
+top: 100%;
+opacity: 1;
+}
+100% {
+top: -100px;
+opacity: 0;
+}
+}
+
+.container {
+background-color: rgba(255, 255, 255, 0.85);
+padding: 30px;
+border-radius: 20px;
+box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+max-width: 800px;
+width: 90%;
+margin: 20px auto;
+text-align: center;
+}
+
+h1, h2, p {
+margin-bottom: 20px;
+}
+
+img {
+max-width: 100%;
+border-radius: 15px;
+margin: 15px 0;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+JavaScript:
+function createHeart() {
+const heart = document.createElement('div');
+heart.className = 'heart';
+heart.style.left = Math.random() * 100 + 'vw';
+heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+document.body.appendChild(heart);
+setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 300);
+
+   </script>
+</div>
 </body>
 </html>
