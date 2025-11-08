@@ -1,8 +1,8 @@
 const produtos = [
-  { id: 1, nome: 'Camiseta Básica', preco: 49.90, img: 'https://via.placeholder.com/300?text=Camiseta', categoria: 'Camisetas', descricao: 'Camiseta 100% algodão, confortável e resistente.' },
-  { id: 2, nome: 'Tênis Esportivo', preco: 199.90, img: 'https://via.placeholder.com/300?text=Tênis', categoria: 'Tênis', descricao: 'Tênis ideal para corrida e uso diário.' },
-  { id: 3, nome: 'Boné Estiloso', preco: 39.90, img: 'https://via.placeholder.com/300?text=Boné', categoria: 'Bonés', descricao: 'Boné ajustável, design moderno.' },
-  { id: 4, nome: 'Mochila Urbana', preco: 149.90, img: 'https://via.placeholder.com/300?text=Mochila', categoria: 'Mochilas', descricao: 'Mochila resistente com vários compartimentos.' }
+  { id: 1, nome: 'O Rosto da Marvel', preco: 6599.99, img: 'https://images.tcdn.com.br/img/img_prod/460977/pre_venda_boneco_homem_aranha_spider_man_advanced_suit_marvel_s_spider_man_ps4_vgm31_escala_1_6_hot__41848_2_20190313160645.jpg', categoria: 'Camisetas', descricao: 'Camiseta 100% algodão, confortável e resistente.' },
+  { id: 2, nome: 'O Rosto da DC', preco: 6499.99, img: 'https://images.tcdn.com.br/img/img_prod/460977/action_figure_batman_batman_cavaleiro_das_trevas_ressurge_the_dark_knight_rises_escala_1_6_hot_toys__115779_1_1fcd9316fedb2ed1adf7e36554581d6f.jpeg', categoria: 'Tênis', descricao: 'Tênis ideal para corrida e uso diário.' },
+  { id: 3, nome: 'O Rosto dos Hérois', preco: 6399.99, img: 'https://images.tcdn.com.br/img/img_prod/460977/pre_venda_boneco_superman_super_homem_justice_league_liga_da_justica_mms465_escala_1_6_hot_toys_30249_2_20201211183733.jpg', categoria: 'Tênis', descricao: 'Boné ajustável, design moderno.' },
+  { id: 4, nome: 'O Rosto dos Vilões', preco: 6499.99, img: 'https://cdn.awsli.com.br/2500x2500/1369/1369860/produto/230053995/whatsapp-image-2023-08-19-at-11-47-35-am-5ydka8whdg.jpeg', categoria: 'Tênis', descricao: 'Mochila resistente com vários compartimentos.' }
 ];
 
 let produtosFiltrados = [...produtos];
@@ -128,17 +128,14 @@ function finalizarCompra() {
   carrinho = {};
   updateCartCount();
   renderCart();
-  // Fecha modal programaticamente (usando Bootstrap 5 modal API)
   const modalElement = document.getElementById('cartModal');
   const modal = bootstrap.Modal.getInstance(modalElement);
   modal.hide();
 }
 
-// Atualiza o carrinho sempre que o modal for aberto
 const cartModalElement = document.getElementById('cartModal');
 cartModalElement.addEventListener('show.bs.modal', renderCart);
 
-// Inicializa lista de produtos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   updateCartCount();
